@@ -1,0 +1,11 @@
+project='linkedlist.lua'
+title='Linked List implementation for Lua'
+description='Provides linked list + goodies'
+format='discount'
+file='./src/'
+dir='docs'
+readme='README.md'
+sort=true
+sort_modules=true
+all=false
+style='./docs/'

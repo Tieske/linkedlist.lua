@@ -2,9 +2,13 @@
 luac.out
 
 # luarocks build files
-*.src.rock
+*.rock
 *.zip
 *.tar.gz
+
+# luacov report files
+*.report.out
+*.stats.out
 
 # Object files
 *.o

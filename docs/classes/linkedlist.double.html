@@ -1,0 +1,719 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Linked List implementation for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>linkedlist.lua</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Methods_additional_to_the_Single_linked_list_interface">Methods additional to the Single linked list interface </a></li>
+<li><a href="#Single_linked_list_interface">Single linked list interface </a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><strong>linkedlist.double</strong></li>
+  <li><a href="../classes/linkedlist.single.html">linkedlist.single</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>linkedlist.double</code></h1>
+<p>A double-linked-list class.</p>
+<p> The class features the following functionality:</p>
+
+<ul>
+    <li>API compatible with the single-linked-list (easy to switch)</li>
+    <li>adds lifo queue behaviour.</li>
+    <li>adds method to swap 2 items in position</li>
+    <li>adds methods for moving items up/down</li>
+    <li>adds a reverse iterator</li>
+</ul>
+
+<p> The <code>item</code> objects are mostly for internal use only. The actual value stored lives
+ in the <code>item.value</code> field.</p>
+
+
+<h2><a href="#Methods_additional_to_the_Single_linked_list_interface">Methods additional to the Single linked list interface </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#List:get_previous">List:get_previous ([item])</a></td>
+	<td class="summary">Gets the previous item.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:move_down">List:move_down (item)</a></td>
+	<td class="summary">Moves an item 1 element down.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:move_up">List:move_up (item)</a></td>
+	<td class="summary">Moves an item 1 element up.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:peek_lifo">List:peek_lifo ()</a></td>
+	<td class="summary">Returns the value at the end (lifo), without removing it.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:pop_lifo">List:pop_lifo ()</a></td>
+	<td class="summary">Pops the value at the end (lifo).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:reverse_iter">List:reverse_iter ()</a></td>
+	<td class="summary">Iterator over the list, in reverse order.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:swap">List:swap (item1, item2)</a></td>
+	<td class="summary">Swaps two items.</td>
+	</tr>
+</table>
+<h2><a href="#Single_linked_list_interface">Single linked list interface </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#List.new">List.new ()</a></td>
+	<td class="summary">Create a new Linked List object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:add_value">List:add_value (value[, idx=size+1])</a></td>
+	<td class="summary">Adds an item to the list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:clear">List:clear ()</a></td>
+	<td class="summary">Clears the list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:first_item">List:first_item ()</a></td>
+	<td class="summary">Gets the first item in the list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:first_value">List:first_value ()</a></td>
+	<td class="summary">Gets the first value in the list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:get_item">List:get_item (idx)</a></td>
+	<td class="summary">Gets the item at the specified index.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:get_next">List:get_next ([item])</a></td>
+	<td class="summary">Gets the next item.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:get_size">List:get_size ()</a></td>
+	<td class="summary">Gets the length of the list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:get_value">List:get_value (idx)</a></td>
+	<td class="summary">Gets the value at the specified index.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:iter">List:iter ()</a></td>
+	<td class="summary">Iterator over the list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:last_item">List:last_item ()</a></td>
+	<td class="summary">Gets the last item in the list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:last_value">List:last_value ()</a></td>
+	<td class="summary">Gets the last value in the list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:peek">List:peek ()</a></td>
+	<td class="summary">Returns the value at the top/start, without removing it.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:pop">List:pop ()</a></td>
+	<td class="summary">Pops the value at the top/start.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#List:push">List:push (value)</a></td>
+	<td class="summary">Adds a value to the end of the list.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Methods_additional_to_the_Single_linked_list_interface"></a>Methods additional to the Single linked list interface </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "List:get_previous"></a>
+    <strong>List:get_previous ([item])</strong>
+    </dt>
+    <dd>
+    Gets the previous item.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+            <span class="types"><span class="type">item</span></span>
+         an item object as returned when added, if not provided, the
+ last item in the list will be returned.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the previous/last item, or nil+"not found"
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:move_down"></a>
+    <strong>List:move_down (item)</strong>
+    </dt>
+    <dd>
+    Moves an item 1 element down.
+ Moves 1 position towards the end of the list. Does nothing
+ if the item is already at the end of the list.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+            <span class="types"><span class="type">item</span></span>
+         must be an item object as returned when added.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true if successful, false if already at the end
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:move_up"></a>
+    <strong>List:move_up (item)</strong>
+    </dt>
+    <dd>
+    Moves an item 1 element up.
+ Moves 1 position towards the start of the list. Does nothing
+ if the item is already at the top of the list.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+            <span class="types"><span class="type">item</span></span>
+         must be an item object as returned when added.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true if successful, false if already at the top
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:peek_lifo"></a>
+    <strong>List:peek_lifo ()</strong>
+    </dt>
+    <dd>
+    Returns the value at the end (lifo), without removing it.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the value at the end, or <code>nil+&quot;not found&quot;</code> if empty
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:pop_lifo"></a>
+    <strong>List:pop_lifo ()</strong>
+    </dt>
+    <dd>
+    Pops the value at the end (lifo).
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the value at the end, or <code>nil+&quot;not found&quot;</code> if empty
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:reverse_iter"></a>
+    <strong>List:reverse_iter ()</strong>
+    </dt>
+    <dd>
+    Iterator over the list, in reverse order.
+ Note: the returned <code>count</code> will be from 1 to <code>size</code>, ascending.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        iterator returning count and value
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">for</span> cnt, value <span class="keyword">in</span> my_list:iter() <span class="keyword">do</span>
+    <span class="global">print</span>(value)
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "List:swap"></a>
+    <strong>List:swap (item1, item2)</strong>
+    </dt>
+    <dd>
+    Swaps two items.
+ Updates the positions of the two items in the list. If the items are the same
+ item, nothing happens.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item1</span>
+            <span class="types"><span class="type">item</span></span>
+         must be an item object as returned when added.
+        </li>
+        <li><span class="parameter">item2</span>
+            <span class="types"><span class="type">item</span></span>
+         must be an item object as returned when added.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        nothing
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Single_linked_list_interface"></a>Single linked list interface </h2>
+
+          <div class="section-description">
+           This part is the same interface that the Single linked list has. The interface is
+ identical, so it should be easy to update from Single to Double.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "List.new"></a>
+    <strong>List.new ()</strong>
+    </dt>
+    <dd>
+    Create a new Linked List object.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Linked List object
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> lst = List.new()
+<span class="comment">-- or alternatively
+</span><span class="keyword">local</span> lst = List()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "List:add_value"></a>
+    <strong>List:add_value (value[, idx=size+1])</strong>
+    </dt>
+    <dd>
+    Adds an item to the list.
+ Note that the <code>idx</code> position, is the position where the item ends up after insertion.
+ Too high or too low indices will not return errors, but insert at the start/end.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         the value to store in the list, can be any type, inlcuding <code>nil</code>
+        </li>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">int</span></span>
+         position where to add (negative indices allowed, <code>idx = 0</code>
+ will add at the start). By default appends at end.
+         (<em>default</em> size+1)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the added item.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:clear"></a>
+    <strong>List:clear ()</strong>
+    </dt>
+    <dd>
+    Clears the list.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:first_item"></a>
+    <strong>List:first_item ()</strong>
+    </dt>
+    <dd>
+    Gets the first item in the list.
+ Does not remove the item from the list.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the first item, or nil+"not found"
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:first_value"></a>
+    <strong>List:first_value ()</strong>
+    </dt>
+    <dd>
+    Gets the first value in the list.
+ Does not remove the value from the list.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the first value, or nil+"not found"
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:get_item"></a>
+    <strong>List:get_item (idx)</strong>
+    </dt>
+    <dd>
+    Gets the item at the specified index.
+ Note: this method iterates over the list to find the index, so it is
+ not efficient, especially with larger lists.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">int</span></span>
+         index of the item to return
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the item, or nil+"not found"
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:get_next"></a>
+    <strong>List:get_next ([item])</strong>
+    </dt>
+    <dd>
+    Gets the next item.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+            <span class="types"><span class="type">item</span></span>
+         an item object as returned when added, if not provided, the
+ first item in the list will be returned.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the next/first item, or nil+"not found"
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:get_size"></a>
+    <strong>List:get_size ()</strong>
+    </dt>
+    <dd>
+    Gets the length of the list.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer, length of the list
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:get_value"></a>
+    <strong>List:get_value (idx)</strong>
+    </dt>
+    <dd>
+    Gets the value at the specified index.
+ Note: this method iterates over the list to find the index, so it is
+ not efficient, especially with larger lists.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">int</span></span>
+         index of the value to return
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the value, or nil+"not found"
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:iter"></a>
+    <strong>List:iter ()</strong>
+    </dt>
+    <dd>
+    Iterator over the list.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        iterator returning idx and value
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">for</span> i, value <span class="keyword">in</span> my_list:iter() <span class="keyword">do</span>
+    <span class="global">print</span>(value)
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "List:last_item"></a>
+    <strong>List:last_item ()</strong>
+    </dt>
+    <dd>
+    Gets the last item in the list.
+ Does not remove the item from the list.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the last item
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:last_value"></a>
+    <strong>List:last_value ()</strong>
+    </dt>
+    <dd>
+    Gets the last value in the list.
+ Does not remove the value from the list.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the last value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:peek"></a>
+    <strong>List:peek ()</strong>
+    </dt>
+    <dd>
+    Returns the value at the top/start, without removing it.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the value at the start, or <code>nil+&quot;not found&quot;</code> if empty
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:pop"></a>
+    <strong>List:pop ()</strong>
+    </dt>
+    <dd>
+    Pops the value at the top/start.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the value at the start, or <code>nil+&quot;not found&quot;</code> if empty
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "List:push"></a>
+    <strong>List:push (value)</strong>
+    </dt>
+    <dd>
+    Adds a value to the end of the list.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         the value to store in the list, can be any type, inlcuding <code>nil</code>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the added item.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-01-11 23:51:28 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
